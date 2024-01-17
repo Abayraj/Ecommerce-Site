@@ -1,7 +1,8 @@
 import app from './app.js';
-import dotenv, { configDotenv } from 'dotenv';
+import dotenv from 'dotenv';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import connectDatabase from './config/database.js';
 
 // Convert import.meta.url to a file path
 const __filename = fileURLToPath(import.meta.url);
@@ -9,6 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
+
+connectDatabase();
 
 
 console.log(process.env.NODE_ENV)
