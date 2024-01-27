@@ -2,7 +2,7 @@ import app from './app.js';
 import dotenv from 'dotenv';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import connectDatabase from './config/database.js';
+import connectDatabase  from'./config/database.js'
 
 // Convert import.meta.url to a file path
 const __filename = fileURLToPath(import.meta.url);
