@@ -41,7 +41,7 @@ const productSchema = new mongoose.Schema({
       values: [
         "Electronics",
         "Cameras",
-        "Laptop",
+        "Laptops",
         "Accessories",
         "Food",
         "Books",
@@ -50,6 +50,7 @@ const productSchema = new mongoose.Schema({
         "Sports",
         "Outdoor",
         "Home",
+        "Headphones"
       ],
       message: "please select correct category for product",
     },
