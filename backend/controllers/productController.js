@@ -1,6 +1,6 @@
 import Product from "../models/product.js";
 
-///Create new product =>/api/v1/product/new
+///Create new product =>/api/v1/admin/product/new
 export const  newProduct = async (req,res,next) =>{
     const product = await Product.create(req.body);
 
@@ -43,7 +43,7 @@ export const getSingleProduct = async (req,res,next) =>{
 
 };
 
-//Update product => /api/v1/product/:id
+//Update product => /api/v1/admin/product/:id
 
 export const updateProduct = async (req,res,next)=>{
     let product = await Product.findById(req.params.id);
