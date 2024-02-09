@@ -5,9 +5,11 @@ import product from "./routes/product.js";
 import errorMiddleware from "./middlewares/errors.js";
 
 app.use(express.json());
+
 app.use("/api/v1", product);
+app.use(errorMiddleware);
 
 //middleware for handle errors
-app.use(errorMiddleware);
+
 
 export default app;

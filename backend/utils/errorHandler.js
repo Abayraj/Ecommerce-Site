@@ -7,4 +7,4 @@ class ErrorHandler extends Error {
   }
 }
 
-export { ErrorHandler };
+export {ErrorHandler};
