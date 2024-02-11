@@ -9,10 +9,11 @@ import {
   deleteProduct,
 } from "../controllers/productController.js";
 
-router.route("/products").get(getProducts);
-router.route("/admin/product/new").post(newProduct);
-router.route("/product/:id").get(getSingleProduct);
-router.route("/admin/product/:id")
+router.get("/products", getProducts);
+router.post("/admin/product/new", newProduct);
+router.get("/product/:id", getSingleProduct);
+router.put("/admin/product/:id", updateProduct);
+router.delete("/admin/product/:id", deleteProduct)
 .put(updateProduct)
 .delete(deleteProduct);
 
