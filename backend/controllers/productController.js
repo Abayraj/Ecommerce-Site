@@ -14,10 +14,19 @@ export const newProduct = catchAsyncErrors(async (req, res, next) => {
 
 ///Get all products =>/api/v1/products?keyword=apple
 export const getProducts = catchAsyncErrors(async (req, res, next) => {
+  //pagenation
+
+  const resultPrePgae = 4;
+
+  //for frontend
+  const productCount = await Product.countDocuments();
+
+
   const apiFeatures = new APIFeatures(Product.find(),req.query)
   //method chaining
   .search()
   .filter()
+  .pagination(resultPrePgae)
   const products = await apiFeatures.query;
   if (!products) {
     return next(new ErrorHandler("Products not found check database", 404));
@@ -26,6 +35,7 @@ export const getProducts = catchAsyncErrors(async (req, res, next) => {
     success: true,
     message: "This route will show all products in database",
     count: products.length,
+    productCount,
     products,
   });
 });

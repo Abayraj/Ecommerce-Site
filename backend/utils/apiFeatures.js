@@ -40,6 +40,13 @@ class APIFeatures {
     //return this for method chaining
     return this;
   }
+  pagination(resultPrePage){
+    const currentPage = Number(this.queryStr.page) || 1;
+    //skip data that shown to be in page
+    const skip = resultPrePage * (currentPage - 1);
+    this.query = this.query.limit(resultPrePage).skip(skip);
+    return this;
+  }
 }
 
 export default APIFeatures;
