@@ -14,8 +14,10 @@ export const newProduct = catchAsyncErrors(async (req, res, next) => {
 
 ///Get all products =>/api/v1/products?keyword=apple
 export const getProducts = catchAsyncErrors(async (req, res, next) => {
-  const apiFeatures = new APIFeatures(Product.find(), req.query)
+  const apiFeatures = new APIFeatures(Product.find(),req.query)
+  //method chaining
   .search()
+  .filter()
   const products = await apiFeatures.query;
   if (!products) {
     return next(new ErrorHandler("Products not found check database", 404));
