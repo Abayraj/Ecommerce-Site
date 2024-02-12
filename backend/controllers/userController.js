@@ -1,7 +1,7 @@
 import User from "../models/user.js";
 import { ErrorHandler } from "../utils/errorHandler.js";
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
-
+import {sendToken} from "../utils/jwtToken.js"
 //Registeror signup a user => /api/v1/register
 
 export const registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -16,13 +16,8 @@ export const registerUser = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
-  const token = user.getJwtToken();
+  sendToken(user,200,res)
 
-  res.status(201).json({
-    success: true,
-    token,
-
-  });
 });
 
 //Login User => /api/v1/login
@@ -50,11 +45,6 @@ export const loginUsers = catchAsyncErrors(async (req, res, next) => {
   }
 
   //won't create a new token take the existing token from user
-  const token = user.getJwtToken();
 
-  res.status(200).json({
-    success: true,
-    token,
-
-  });
+  sendToken(user,200,res)
 });
