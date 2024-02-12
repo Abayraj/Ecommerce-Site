@@ -46,7 +46,7 @@ class APIFeatures {
     const skip = resultPrePage * (currentPage - 1);
     this.query = this.query.limit(resultPrePage).skip(skip);
     return this;
-  }
+  } 
 }
 
 export default APIFeatures;
