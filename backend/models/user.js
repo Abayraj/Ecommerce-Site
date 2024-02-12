@@ -47,12 +47,20 @@ const userSchema = new mongoose.Schema({
 // "Schema Methods and Plugins userSchema."
 //Encryping password before saving
 
-userSchema.pre('save ', async function(next){
+userSchema.pre('save', async function(next){
     if(!this.isModified('password')){
         next()
     }
     this.password = await bcrypt.hash(this.password,10)
+  
 })
+//Compare user password
+
+userSchema.methods.comparePassword = async function(enteredpassword){
+    return await bcrypt.compare(enteredpassword,this.password);
+
+}
+
 
 //Return JWT token
 userSchema.methods.getJwtToken = function(){
