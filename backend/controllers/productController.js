@@ -21,12 +21,16 @@ export const getProducts = catchAsyncErrors(async (req, res, next) => {
   //for frontend
   const productCount = await Product.countDocuments();
 
-
-  const apiFeatures = new APIFeatures(Product.find(),req.query)
-  //method chaining
-  .search()
-  .filter()
-  .pagination(resultPrePgae)
+  /*
+Product.find() returns a Mongoose query object representing a 
+find operation on the Product collection, 
+which is then customized and executed within the APIFeatures
+*/
+  const apiFeatures = new APIFeatures(Product.find(), req.query)
+    //method chaining
+    .search()
+    .filter()
+    .pagination(resultPrePgae);
   const products = await apiFeatures.query;
   if (!products) {
     return next(new ErrorHandler("Products not found check database", 404));
