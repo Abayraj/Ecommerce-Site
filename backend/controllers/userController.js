@@ -36,7 +36,7 @@ export const loginUsers = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("invalid Email or Password", 404));
   }
 
-  //check password comapre
+  //check password comapre returns true or false
 
   const isPasswordMatched = await user.comparePassword(password);
 
@@ -48,3 +48,10 @@ export const loginUsers = catchAsyncErrors(async (req, res, next) => {
 
   sendToken(user,200,res)
 });
+
+export const logOutUsers = catchAsyncErrors(async(req,res,next)=>{
+  const {email} = req.body;
+  if (!email) {
+    return next(new ErrorHandler("please enter email and password", 400));
+  }
+})
