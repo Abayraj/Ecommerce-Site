@@ -8,8 +8,8 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/productController.js";
-
-router.get("/products", getProducts);
+import {isAuthenticatedUser} from "../middlewares/auth.js"
+router.get("/products",isAuthenticatedUser,getProducts);
 router.post("/admin/product/new", newProduct);
 router.get("/product/:id", getSingleProduct);
 router.put("/admin/product/:id", updateProduct);
