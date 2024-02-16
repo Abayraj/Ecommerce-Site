@@ -5,6 +5,10 @@ import APIFeatures from "../utils/apiFeatures.js";
 
 ///Create new product =>/api/v1/admin/product/new
 export const newProduct = catchAsyncErrors(async (req, res, next) => {
+//req.user.id this get the user id when we assgin token 
+//set the user id to the current req.body.user the current req.body contains the product user mongoose schema definition
+  req.body.user = req.user.id;
+
   const product = await Product.create(req.body);
   res.status(201).json({
     success: true,
@@ -14,6 +18,7 @@ export const newProduct = catchAsyncErrors(async (req, res, next) => {
 
 ///Get all products =>/api/v1/products?keyword=apple
 export const getProducts = catchAsyncErrors(async (req, res, next) => {
+
   //pagenation
 
   const resultPrePgae = 4;

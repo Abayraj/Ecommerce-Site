@@ -8,13 +8,13 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/productController.js";
-import {isAuthenticatedUser} from "../middlewares/auth.js"
-router.get("/products",isAuthenticatedUser,getProducts);
-router.post("/admin/product/new", newProduct);
+import {isAuthenticatedUser,authorizeRoles} from "../middlewares/auth.js"
+router.get("/products",isAuthenticatedUser,authorizeRoles('admin'),getProducts);
+router.post("/admin/product/new",isAuthenticatedUser,authorizeRoles('admin'),newProduct);
 router.get("/product/:id", getSingleProduct);
-router.put("/admin/product/:id", updateProduct);
+router.put("/admin/product/:id", updateProduct,authorizeRoles);
 router.delete("/admin/product/:id", deleteProduct)
-.put(updateProduct)
-.delete(deleteProduct);
+.put(isAuthenticatedUser,updateProduct,authorizeRoles)
+.delete(isAuthenticatedUser,authorizeRoles,deleteProduct,);
 
 export default router;
