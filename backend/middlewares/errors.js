@@ -3,7 +3,6 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { ErrorHandler } from "../utils/errorHandler.js";
 
-
 // Convert import.meta.url to a file path
 const __filename = fileURLToPath(import.meta.url);
 // Get the directory name
@@ -43,25 +42,21 @@ const errorMiddleware = (err, req, res, next) => {
     }
     //Handling the mongoose duplicate data key error
     if (err.code === 11000) {
-      const message = `Duplicate ${Object.keys(err.keyValue)} entered`
-      error = new ErrorHandler(message, 400)
-  }
-
+      const message = `Duplicate ${Object.keys(err.keyValue)} entered`;
+      error = new ErrorHandler(message, 400);
+    }
 
     //Handling wrong JWT error
-    if(err.name==='JsonWebTokenError') {
-      const message  ='JSON web Token is invalid. try Again!!!'
-      error = new ErrorHandler(message,400)
+    if (err.name === "JsonWebTokenError") {
+      const message = "JSON web Token is invalid. try Again!!!";
+      error = new ErrorHandler(message, 400);
     }
 
     //Handling Expired JWT error
-    if(err.name==='TokenExpiredError') {
-      const message  ='JSON web Token is expired. try Again!!!'
-      error = new ErrorHandler(message,400)
+    if (err.name === "TokenExpiredError") {
+      const message = "JSON web Token is expired. try Again!!!";
+      error = new ErrorHandler(message, 400);
     }
-
-
-
 
     res.status(err.statusCode || 500).json({
       success: false,
@@ -69,6 +64,5 @@ const errorMiddleware = (err, req, res, next) => {
     });
   }
 };
-
 
 export default errorMiddleware;
