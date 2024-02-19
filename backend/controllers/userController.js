@@ -185,3 +185,66 @@ export const logOutUser = catchAsyncErrors(async (req, res, next) => {
     message: "Logged out",
   });
 });
+
+//Admin Routes
+//Get all users => /api/v1/admin/users'
+export const allUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+
+//Get user details =>/api/v1/admin/user/:id
+export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(
+      new ErrorHandler(`user dose not found with id:${req.params.id}`),
+      404
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+
+//update user profile admin => /api/v1/admin/user/:id
+export const updateUser = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+    //useFindAndModify set to false ensures using MongoDB's native findOneAndUpdate() rather than the deprecated findAndModify() method.
+  });
+  res.status(200).json({
+    sucess: true,
+  });
+});
+
+
+// Delete user   =>   /api/v1/admin/user/:id
+export const deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+
+
+  if (!user) {
+      return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+  }
+
+  // Remove avatar from cloudinary TODO
+
+  res.status(200).json({
+      success: true,
+  })
+})
