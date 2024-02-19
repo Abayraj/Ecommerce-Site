@@ -5,13 +5,14 @@ const app = express();
 import products from "./routes/product.js";
 import errorMiddleware from "./middlewares/errors.js";
 import auth from "./routes/auth.js";
+import order from "./routes/order.js";
 
 
 app.use(express.json());
 app.use(cookieParser());  
 
-app.use("/api/v1", products);
-app.use("/api/v1",auth);
+app.use("/api/v1", products,auth);
+app.use("/api/v1",order);
 app.use(errorMiddleware);
 
 //middleware for handle errors
