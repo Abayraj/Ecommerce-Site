@@ -4,7 +4,7 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import { sendToken } from "../utils/jwtToken.js";
 import sendEmail from "../utils/sentEmail.js";
 import crypto from "crypto";
-//Registeror signup a user => /api/v1/register
+//Register signup a user => /api/v1/register
 
 export const registerUser = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -154,7 +154,7 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//update user profile /api/v1/me/update
+//update userProfile /api/v1/me/update
 export const updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
     name: req.body.name,
@@ -211,3 +211,42 @@ export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
     user,
   });
 });
+
+
+//update user profile admin => /api/v1/admin/user/:id
+export const updateUser = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+    //useFindAndModify set to false ensures using MongoDB's native findOneAndUpdate() rather than the deprecated findAndModify() method.
+  });
+  res.status(200).json({
+    sucess: true,
+  });
+});
+
+
+// Delete user   =>   /api/v1/admin/user/:id
+export const deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+ 
+
+  if (!user) {
+      return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+  }
+
+  // Remove avatar from cloudinary TODO
+  
+  res.status(200).json({
+      success: true,
+  })
+})
+
+
+

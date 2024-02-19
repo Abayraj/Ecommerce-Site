@@ -3,7 +3,6 @@ const router = express.Router();
 import {
   getProducts,
   newProduct,
-
   getSingleProduct,
   updateProduct,
   deleteProduct,
