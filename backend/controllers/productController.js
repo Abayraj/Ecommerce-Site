@@ -5,8 +5,8 @@ import APIFeatures from "../utils/apiFeatures.js";
 
 ///Create new product =>/api/v1/admin/product/new
 export const newProduct = catchAsyncErrors(async (req, res, next) => {
-//req.user.id this get the user id when we assgin token 
-//set the user id to the current req.body.user the current req.body contains the product user mongoose schema definition
+  //req.user.id this get the user id when we assgin token
+  //set the user id to the current req.body.user the current req.body contains the product user mongoose schema definition
   req.body.user = req.user.id;
 
   const product = await Product.create(req.body);
@@ -18,7 +18,6 @@ export const newProduct = catchAsyncErrors(async (req, res, next) => {
 
 ///Get all products =>/api/v1/products?keyword=apple
 export const getProducts = catchAsyncErrors(async (req, res, next) => {
-
   //pagenation
 
   const resultPrePgae = 4;
@@ -98,4 +97,41 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
     success: true,
     message: "Product deleted successfully",
   });
+});
+
+//Create new review  => /api/v1/review
+
+export const createProductReview = catchAsyncErrors(async (req, res, next) => {
+  const { rating, comment, productId } = req.body;
+
+  const review = {
+    user: req.user._id,
+    name: req.user.name,
+    rating: Number(rating),
+    comment,
+  };
+
+  const product = await Product.findById(productId); 
+  const isReviewed = product.reviews.find(
+    (review) => review.user.toString() === req.user._id.toString()
+  );
+  if(isReviewed){
+    product.reviews.forEach(review=>{
+      if(review.user.toString()===req.user._id.toString()){
+        review.comment = comment;
+        review.rating = rating;  
+      }    
+    })
+
+  }else{
+    product.reviews.push(review);
+    product.numOfReviews = product.reviews.length
+  }
+  product.ratings = product.reviews.reduce((acc,item)=>item.rating + acc,0)/product.reviews.length
+
+  await product.save({validateBeforeSave:false});
+  
+  res.status(200).json({
+    success:true
+  })
 });
