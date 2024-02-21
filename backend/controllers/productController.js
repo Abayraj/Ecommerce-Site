@@ -148,7 +148,7 @@ export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//get all product  review => /api/v1/reviews
+//delete product  review => /api/v1/reviews
 
 export const deleteReview = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.query.productId);
