@@ -158,7 +158,7 @@ export const deleteReview = catchAsyncErrors(async (req, res, next) => {
   const reviews = product.reviews.filter(
     review => review._id.toString() !== req.query.id.toString()
   );
-
+ 
   const numOfReviews = reviews.length;
 
   const ratings =
