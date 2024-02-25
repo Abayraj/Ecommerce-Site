@@ -7,6 +7,10 @@ export default {
   theme: {
 
     extend: {
+      backgroundImage: {
+        'logo': "url('./public/images/Logo-removebg-preview.png')",
+      
+      },
       colors: {
         'navbg': '#FFFF', // Background color for navigation
         'slate-blue-custom': '#0D0C22', // Custom slate blue color

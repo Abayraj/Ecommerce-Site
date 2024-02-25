@@ -10,7 +10,7 @@ const LanguageSelector = () => {
   };
 
   return (
-    <select className=' border-2 border-black rounded-xl cursor-pointer' onChange={handleLanguageChange} value={i18n.language}>
+    <select className=' border-2 border-black rounded-xl cursor-pointer w-10' onChange={handleLanguageChange} value={i18n.language}>
       <option value="en">English</option>
       <option value="fr">French</option>
       <option value="ml">Malayalam</option>
