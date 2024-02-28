@@ -24,16 +24,19 @@ class APIFeatures {
 
   filter() {
     const queryCopy = { ...this.queryStr };
+    console.log(queryCopy)
 
     //Removing fileds from the query string
-    console.log(queryCopy);
+    console.log(queryCopy,"hello")
     const removeFields = ["keyword", "limit", "page"];
     removeFields.forEach((el) => delete queryCopy[el]);
 
     //Advance filter for price ,ratings ect
     let queryStr = JSON.stringify(queryCopy);
-
+    console.log(queryStr,"before")
+    //blue g is for search all globaly match and for making changes
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
+    console.log(queryStr,"after")
 
     this.query = this.query.find(JSON.parse(queryStr));
 

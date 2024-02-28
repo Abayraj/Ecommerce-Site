@@ -34,16 +34,18 @@ which is then customized and executed within the APIFeatures
     //method chaining
     .search()
     .filter()
-    .pagination(resultPrePgae);
+    .pagination(resultPrePgae)
+    console.log(apiFeatures)
   const products = await apiFeatures.query;
+  console.log(products)
   if (!products) {
     return next(new ErrorHandler("Products not found check database", 404));
   }
+  console.log(products)
   res.status(200).json({
     success: true,
     message: "This route will show all products in database",
-    count: products.length,
-    productCount,
+    // count: products.length,
     products,
   });
 });
@@ -156,9 +158,9 @@ export const deleteReview = catchAsyncErrors(async (req, res, next) => {
   console.log(product);
 
   const reviews = product.reviews.filter(
-    review => review._id.toString() !== req.query.id.toString()
+    (review) => review._id.toString() !== req.query.id.toString()
   );
- 
+
   const numOfReviews = reviews.length;
 
   const ratings =

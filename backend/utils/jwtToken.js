@@ -10,8 +10,9 @@ export const sendToken = (user,statusCode,res)=>{
 
         expires:new 
         Date(Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 1000),
-
-        httpOnly:true
+        httpOnly: true,
+        // secure: true, // Ensures cookie is only sent over HTTPS
+        // sameSite: 'none' // Allows cross-site requests
 
     }
 

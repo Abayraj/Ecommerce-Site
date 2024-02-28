@@ -13,10 +13,10 @@ import {
 import { isAuthenticatedUser, authorizeRoles } from "../middlewares/auth.js";
 router.get(
   "/products",
-  isAuthenticatedUser,
-  authorizeRoles("admin"),
+
   getProducts
 );
+
 router.post(
   "/admin/product/new",
   isAuthenticatedUser,
