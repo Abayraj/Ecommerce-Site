@@ -35,13 +35,12 @@ which is then customized and executed within the APIFeatures
     .search()
     .filter()
     .pagination(resultPrePgae)
-    console.log(apiFeatures)
   const products = await apiFeatures.query;
-  console.log(products)
+
   if (!products) {
     return next(new ErrorHandler("Products not found check database", 404));
   }
-  console.log(products)
+
   res.status(200).json({
     success: true,
     message: "This route will show all products in database",

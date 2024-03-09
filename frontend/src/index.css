@@ -2,3 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .card {
+        @apply
+
+        bg-white text-gray-700
+        w-72 min-h-40
+        shadow-lg rounded-md overflow-hidden
+
+    }
+    .badge{
+        @apply 
+        px-3 py-1 rounded-full text-lg bg-gray-100
+    }
+}

@@ -7,20 +7,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
 // import { useSelector } from "react-redux";
-import { useDispatch } from 'react-redux';
-
-
+import { useDispatch } from "react-redux";
 
 export const Header = () => {
-
   const dispatch = useDispatch();
-
-
-  
 
   const { t } = useTranslation();
   const StyledBadge = styled(Badge)(({ theme }) => ({
-    color: "#0D0C22",
+    color: "#ffff",
     "& .MuiBadge-badge": {
       right: -3,
       top: 8,
@@ -30,11 +24,10 @@ export const Header = () => {
   }));
   return (
     <>
-      <header className="bg-navbg  flex gap-5 justify-between h-24 sm:flex items-center sm:justify-around pt-6 px-4 md:px-6 lg:px-8 w-[100%]">
+      <header className="dark:bg-gray-900 w-screen p-5 sm:flex flex-col">
         <div>
-          <h1 className="text-2xl font-bold ">PixelMart</h1>
+          <h1 className="text-2xl font-bold text-white">PixelMart</h1>
         </div>
-        <div className="flex flex-col sm:flex-row gap-2 items-center">
           <div className="relative">
             <input
               type="text"
@@ -44,19 +37,18 @@ export const Header = () => {
             />
             <SearchIcon className="absolute bottom-2 left-6" />
           </div>
-        </div>
         <div className="hidden sm:inline-block">
-          <button className="rounded-full p-2 w-24 text-black">
+          <button className="rounded-full p-2 w-24 text-white">
             {t("login")}
           </button>
         </div>
         <div>
-          <button className="border-2 rounded-full p-2 w-24 bg-slate-950 text-white">
+          <button className="hidden sm:inline-block border-2 rounded-full p-2 w-24 bg-slate-950 text-white">
             {t("sign up")}
           </button>
         </div>
-        <div className="mt-2">
-          <LanguageSelector />
+        <div className="mt-2 hidden sm:inline-block">
+          <LanguageSelector  />
         </div>
         <div>
           <IconButton aria-label="cart">

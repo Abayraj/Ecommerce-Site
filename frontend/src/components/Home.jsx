@@ -1,126 +1,138 @@
 import React, { useEffect, useState } from "react";
 import MetaData from "./layout/MetaData";
-import { useDispatch } from "react-redux";
-import axios from 'axios'
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { getallProducts } from "../features/product/productSlice";
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const { loading, products, error , count } = useSelector((state) => state.products);
 
-async function getData() {
-  axios.get('http://localhost:4000/api/v1/Products')
-  .then(response => {
-    console.log(response)
-    // Handle response
-  })
-  .catch(error => {
-    // Handle error
-  });
+  useEffect(() => {
+    dispatch(getallProducts());
+  }, [dispatch]);
+  console.log(products, "productss");
 
-
-
-}
-
-getData()
-
-
-async function login (){
-  try {
-    const data = await axios.post('http://localhost:4000/api/v1/login',{
-    name:"hemant34",
-    email:"abayunni5@gmail.com",
-    password:"abayraj"
-
-  })
-  console.log(data)
-    
-  } catch (error) {
- console.log(error)
-    
+  async function login() {
+    try {
+      const data = await axios.post("http://localhost:4000/api/v1/login", {
+        name: "hemant34",
+        email: "abayunni5@gmail.com",
+        password: "abayraj",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
-  
-  
-}
-login()
-
-
-
-
-
-
-
-        // Log or process the response data here
-
-
-// getData()
-
-
-
+  login();
 
   return (
     <>
       <MetaData title={"Buy Best Products Online"} />
-      <section>
-        <div className="relative m-24 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-          <a
-            className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-            href="#"
-          >
-            <img
-              className="object-cover"
-              src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt="product image"
-            />
-            {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> */}
-          </a>
-          <div className="mt-4 px-5 pb-5">
-            <a href="#">
-              <h5 className="text-xl tracking-tight text-slate-900">
-                Nike Air MX Super 2500 - Red
-              </h5>
-            </a>
-            <div className="mt-2 mb-5 flex items-center justify-between">
-              <p>
-                <span className="text-3xl font-bold text-slate-900">$449</span>
-                <span className="text-sm text-slate-900 line-through">
-                  $699
-                </span>
-              </p>
-              <div className="flex items-center">
-                <svg
-                  aria-hidden="true"
-                  className="h-5 w-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                {/* Additional SVG icons */}
-                <span className="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">
-                  5.0
-                </span>
+      {products && products.map((product)=>{
+        
+      }) }
+      <section className="bg-white dark:bg-gray-900">
+        <div className="container px-6 py-8 mx-auto">
+          <div className="lg:flex lg:-mx-2">
+            <div className="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+              <a
+                href="#"
+                className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
+              >
+                Jackets & Coats
+              </a>
+              <a
+                href="#"
+                className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
+              >
+                Hoodies
+              </a>
+              <a
+                href="#"
+                className="block font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              >
+                T-shirts & Vests
+              </a>
+              <a
+                href="#"
+                className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
+              >
+                Shirts
+              </a>
+              <a
+                href="#"
+                className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
+              >
+                Blazers & Suits
+              </a>
+              <a
+                href="#"
+                className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
+              >
+                Jeans
+              </a>
+              <a
+                href="#"
+                className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
+              >
+                Trousers
+              </a>
+              <a
+                href="#"
+                className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
+              >
+                Shorts
+              </a>
+              <a
+                href="#"
+                className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
+              >
+                Underwear
+              </a>
+            </div>
+            
+            
+            <div className="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
+              <div className="flex items-center justify-between text-sm tracking-widest uppercase ">
+                <p className="text-gray-500 dark:text-gray-300">{count} Items</p>
+                <div className="flex items-center">
+                  <p className="text-gray-500 dark:text-gray-300">Sort</p>
+                  <select className="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
+                    <option value="#">Recommended</option>
+                    <option value="#">Size</option>
+                    <option value="#">Price</option>
+                  </select>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+                {products && products.map((product)=>(
+                  <div key={product._id} className="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
+                  <img
+                    className="object-cover w-full rounded-md h-72 xl:h-80"
+                    src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80"
+                    alt="T-Shirt"
+                  />
+                  <h4 className="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200">
+                    {product.name}
+                  </h4>
+                  <p className="text-blue-500">₹ {product.price}</p>
+
+                  <button className="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 mx-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                    </svg>
+                    <span className="mx-1">Add to cart</span>
+                  </button>
+                </div>
+                ))}
               </div>
             </div>
-            <a
-              href="#"
-              className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="mr-2 h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              Add to cart
-            </a>
           </div>
         </div>
       </section>
