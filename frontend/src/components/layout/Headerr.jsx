@@ -20,7 +20,7 @@ const Headerr = () => {
     return (
 
         <>
-            <header className='bg-gray-700 flex p-4  items-center justify-around sm:gap-20 sticky top-0 z-10'>
+            <header className='flex p-4  items-center justify-around bg-white  sticky top-0 z-10'>
                 <div className='mt-1'>
                     <h1 className='text-2xl font-medium'>PixelMart</h1>
                 </div>
@@ -31,20 +31,20 @@ const Headerr = () => {
                         style={{ textIndent: "45px" }}
                         placeholder={t("search...")}
                     />
-                    <SearchIcon className="absolute top-1 sm:top-3 left-6" />
+                    <SearchIcon className="absolute top-1 sm:top-3 left-6"/>
                 </div>
                 <div>
                     <button className='hidden sm:inline-block border-2 rounded-full p-2 w-24 bg-slate-950 text-white'> {t("sign up")}</button>
                 </div>
-                <div className="mt-2 hidden sm:inline-block">
-                    <LanguageSelector />
+                <div className="hidden ">
+                    <LanguageSelector className="hidden" />
                 </div>
-                <div className='hidden sm:inline-block'>
+                <div className='hidden '>
                     <StyledBadge badgeContent={4} color="secondary">
                         <ShoppingCartIcon />
                     </StyledBadge>
                 </div>
-                <div className='inline-block sm:hidden'>
+                <div className='lg:hidden '>
                     <Sidebar />
                 </div>
 

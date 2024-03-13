@@ -147,6 +147,9 @@ export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
     success: true,
     reviews: product.reviews,
   });
+
+
+ 
 });
 
 //delete product  review => /api/v1/reviews
