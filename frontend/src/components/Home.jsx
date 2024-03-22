@@ -30,7 +30,7 @@ export const Home = () => {
 
   return (
     <>
-   {loading ?<div className="min-h-screen flex items-center justify-center dark:bg-gray-900">
+   {loading ?<div className="min-h-screen flex items-center justify-center ">
     <DotLoader color="#36d7b7"/>
    </div>: 
    <>

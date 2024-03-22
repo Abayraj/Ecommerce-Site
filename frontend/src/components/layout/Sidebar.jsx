@@ -50,13 +50,16 @@ const Sidebar = () => {
     bmOverlay: {
       background: 'rgba(0, 0, 0, 0.3)',
       display: 'none'
-    }
+    },
+   
+
+  
   }
   return (
-    <Menu styles={ styles }isOpen={true} width={ '310px' } right>  
-      <a id="home" className="menu-item" href="/">Home</a>
-      <a id="about" className="menu-item" href="/about">About</a>
-      <a id="contact" className="menu-item" href="/contact">Contact</a>
+    <Menu styles={ styles }isOpen={true} width={ '310px' } right className='cursor-pointer'>  
+      <a id="home" className="menu-item hover:text-black" href="/">Home</a>
+      <a id="about" className="menu-item hover:text-black" href="/about">About</a>
+      <a id="contact" className="menu-item hover:text-black" href="/contact">Contact</a>
     </Menu>
   );
 };

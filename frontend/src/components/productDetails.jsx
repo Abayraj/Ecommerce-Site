@@ -68,31 +68,64 @@ const ProductDetails = () => {
                 </div>
 
                 <p className="text-gray-500">{product.description}</p>
-              {product.stock >0 ?(
-                <>
-                <div className="flex py-4 space-x-4">
-                  <div className="relative">
-                    <div className="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">Qty</div>
-                    <select className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                {product.stock > 0 ? (
+                  <>
+                    <div className="flex py-4 space-x-4">
+                      <div className="relative">
+                        <div className="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">Qty</div>
+                        <select className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                        <svg className="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                        </svg>
+                      </div>
+                      <div>
+                        {product.colors && product.colors.length > 0 && (
+                          <>
+                            <div className="relative">
+                              <div className="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">Color</div>
+                              <select className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1">
+                                {product.colors.map((color, index) => (
+                                  <option key={index}>{color}</option>
+                                ))}
+                              </select>
+                              <svg className="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                              </svg>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                      <div>
+                        {product.size && product.size.length > 0 && (
+                          <>
+                            <div className="relative">
+                              <div className="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">size</div>
+                              <select className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1">
+                                {product.colors.map((size, index) => (
+                                  <option key={index}>{size}</option>
+                                ))}
+                              </select>
+                              <svg className="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                              </svg>
+                            </div>
+                          </>
+                        )}
+                      </div>
 
-                    <svg className="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                    </svg>
-                  </div>
+                      <button type="button" className="h-14 px-6 py-2 font-semibold rounded-xl bg-gray-800  hover:bg-gray-700 text-white">
+                        Add to Cart
+                      </button>
+                    </div>
+                  </>
+                ) : <h1 className='pt-5 text-red-500'>not avilable now</h1>}
 
-                  <button type="button" className="h-14 px-6 py-2 font-semibold rounded-xl bg-gray-800  hover:bg-gray-700 text-white">
-                    Add to Cart
-                  </button>
-                </div>
-                </>
-              ):<h1>not avilable now</h1>}
-                
               </div>
             </div>
           </div>
