@@ -14,9 +14,14 @@ export const Home = () => {
     dispatch(getallProducts());
   }, [dispatch]);
   console.log(loading, "productss");
+  console.log(products,"productssss")
 
-  const [sortedProducts, setSortedProducts] = useState(products); // State to hold sorted products
-  const [sortBy, setSortBy] = useState("");
+  const [sortedProducts, setSortedProducts] = useState([]); // State to hold sorted products
+  useEffect(()=>{
+    setSortedProducts(products);
+  },[products])
+  console.log(products)
+
 
   async function login() {
     try {
@@ -45,7 +50,9 @@ export const Home = () => {
 
   const handleSortChange = (e) => {
     const selectedOption = e.target.value;
-    setSortBy(selectedOption);
+    if(!selectedOption){
+      setSortedProducts(products)
+    }
     sortProducts(selectedOption);
   }
 

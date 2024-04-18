@@ -13,7 +13,6 @@ import {
 import { isAuthenticatedUser, authorizeRoles } from "../middlewares/auth.js";
 router.get(
   "/products",
-
   getProducts
 );
 

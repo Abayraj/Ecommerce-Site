@@ -7,6 +7,7 @@ import errorMiddleware from "./middlewares/errors.js";
 import auth from "./routes/auth.js";
 import order from "./routes/order.js";
 import cors from 'cors';
+import cart from "./models/cart.js";
 
   
 app.use(cors({
@@ -28,7 +29,7 @@ app.use(cookieParser());
 
 
 
-app.use("/api/v1",auth,products,order);
+app.use("/api/v1",auth,products,order,cart);
 app.use(errorMiddleware);
 
 //middleware for handle errors

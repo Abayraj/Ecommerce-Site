@@ -20,11 +20,11 @@ const Headerr = () => {
     return (
 
         <>
-            <header className='flex p-4  items-center justify-around bg-white  sticky top-0 z-10'>
+            <header className='flex p-4  items-center justify-around bg-white  sticky top-0 z-10 '>
                 <div className='mt-1'>
                     <h1 className='text-2xl font-medium'>PixelMart</h1>
                 </div>
-                <div className="relative">
+                <div className="relative hidden sm:block">
                     <input
                         type="text"
                         className="placeholder:pl-[40px] rounded-full border-2 sm:p-2  sm:w-80 italic font-semibold bg-input-bg-color"
@@ -36,12 +36,12 @@ const Headerr = () => {
                 <div>
                     <button className='hidden sm:inline-block border-2 rounded-full p-2 w-24 bg-slate-950 text-white'> {t("sign up")}</button>
                 </div>
-                <div className="hidden ">
+                <div className="hidden  ">
                     <LanguageSelector className="hidden" />
                 </div>
-                <div className='hidden '>
-                    <StyledBadge badgeContent={4} color="secondary">
-                        <ShoppingCartIcon />
+                <div className=''>
+                    <StyledBadge badgeContent={4} color="primary" >
+                        <ShoppingCartIcon  style={{ color: 'blue' }}   />
                     </StyledBadge>
                 </div>
                 <div className='lg:hidden '>

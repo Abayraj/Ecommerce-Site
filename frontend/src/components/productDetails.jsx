@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { singleproductDetails } from '../features/product/productSlice';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -17,6 +17,18 @@ const ProductDetails = () => {
   const handleChangeImage = (index) => {
     setSelectedImage(index);
   };
+
+  const [quantity, setQuantity] = useState(1);
+
+  const incrementQunatity = () => {
+    setQuantity(quantity + 1);
+  }
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+
+  }
 
   return (
     <div>
@@ -71,19 +83,17 @@ const ProductDetails = () => {
                 {product.stock > 0 ? (
                   <>
                     <div className="flex py-4 space-x-4">
-                      <div className="relative">
-                        <div className="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">Qty</div>
-                        <select className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
-                        <svg className="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                        </svg>
+
+
+                      <div className="flex items-center border-gray-100">
+                        <button className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={decrementQuantity}> - </button>
+                        <span className='p-2'>{quantity}</span>
+                        <button className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={incrementQunatity} > + </button>
                       </div>
+                      <svg className="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                      </svg>
+
                       <div>
                         {product.colors && product.colors.length > 0 && (
                           <>
@@ -119,9 +129,8 @@ const ProductDetails = () => {
                         )}
                       </div>
 
-                      <button type="button" className="h-14 px-6 py-2 font-semibold rounded-xl bg-gray-800  hover:bg-gray-700 text-white">
-                        Add to Cart
-                      </button>
+                      <Link to={`/cart`} className="h-14 px-6 py-4 font-semibold rounded-xl bg-gray-800  hover:bg-gray-700 text-white">  Add to Cart
+                      </Link>
                     </div>
                   </>
                 ) : <h1 className='pt-5 text-red-500'>not avilable now</h1>}
