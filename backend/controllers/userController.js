@@ -17,6 +17,7 @@ export const registerUser = catchAsyncErrors(async (req, res, next) => {
       url: '"dfsadf434"',
     },
   });
+ 
 
   sendToken(user, 200, res);
 });
@@ -25,7 +26,8 @@ export const registerUser = catchAsyncErrors(async (req, res, next) => {
 
 export const loginUsers = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(email,password)
+
+
   //checks if email and password is entered by user
   if (!email || !password) {
     return next(new ErrorHandler("please enter email and password", 400));
@@ -47,6 +49,8 @@ export const loginUsers = catchAsyncErrors(async (req, res, next) => {
   }
 
   //create a new token
+  console.log(email,"email in login in")
+
 
   sendToken(user, 200, res);
 });

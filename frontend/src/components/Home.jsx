@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useMemo } from "react";
 import MetaData from "./layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { getallProducts } from "../features/product/productSlice";
 import { DotLoader } from 'react-spinners'
 import { Link } from "react-router-dom";
+import api from "./api/api_instance";
+
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -23,18 +24,27 @@ export const Home = () => {
   console.log(products)
 
 
-  async function login() {
+  const loginFunction = async () => {
     try {
-      const data = await axios.post("http://localhost:4000/api/v1/login", {
+      const data = await api.post("/login", {
         name: "hemant34",
         email: "abayunni5@gmail.com",
         password: "abayraj",
       });
+      // Handle login success if needed
     } catch (error) {
       console.log(error);
     }
-  }
-  login();
+  };
+
+  // Memoize the login function
+  const login = useMemo(() => loginFunction, []);
+
+  // Call the login function when needed
+  useEffect(() => {
+    login(); // Call the memoized login function
+  }, [login]); // Re-run the effect if the login function changes
+
 
   const sortProducts = (option) => {
     let sortedProducts = [...products];

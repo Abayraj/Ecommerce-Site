@@ -6,22 +6,28 @@ import products from "./routes/product.js";
 import errorMiddleware from "./middlewares/errors.js";
 import auth from "./routes/auth.js";
 import order from "./routes/order.js";
+import cart from "./routes/cart.js";
 import cors from 'cors';
-import cart from "./models/cart.js";
+
+
 
   
+// Enable CORS with options
 app.use(cors({
   origin: 'http://localhost:5173',
   methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Allow credentials
 }));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true'); // If you're using credentials (e.g., cookies)
-  next();
-});
+// app.use((req, res, next) => {
+  
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.setHeader('Access-Control-Allow-Credentials', 'true'); // If you're using credentials (e.g., cookies)
+  
+//   next();
+// });
 
 
 app.use(express.json());

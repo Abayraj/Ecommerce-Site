@@ -13,12 +13,29 @@ const cartSchema = new mongoose.Schema({
         ref:'product',
         required:true
       },
-
       color:String,
-      quantity:String
+    
+      quantity:Number,
+      // productName: {
+      //   type: String,
+      //   required: [true, `please enter the product name`],
+      //   trim: true,
+      //   maxLength: [100, "product name cannot exceed 100 characters"],
+      // },
+      // price: {
+      //   type: Number,
+      //   required: [true, "please enter a product price"],
+      //   trim: true,
+      //   maxLength: [5, "product price cannot exceed 5 characters"],
+      //   default: 0.0,
+      // },
+      // description: {
+      //   type: String,
+      //   required: [true, "please enter product description"],
+      // },
 
 
-})
+});
 
 const cart = mongoose.model("cart", cartSchema);
 

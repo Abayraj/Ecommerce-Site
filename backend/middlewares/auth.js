@@ -6,9 +6,11 @@ import jwt from 'jsonwebtoken'
 
 export const isAuthenticatedUser = catchAsyncErrors(async (req,res,next)=>{
     const {token} = req.cookies
+    console.log(token,"req.cookeies this is ")
+
  
 
-    if(!token){
+    if(!token){  
         return next(new ErrorHandler('Login to access the resource ',404))
     }
     const decoded = jwt.verify(token,process.env.JWT_SECRET)

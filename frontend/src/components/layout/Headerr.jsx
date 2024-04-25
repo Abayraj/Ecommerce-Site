@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -6,6 +6,8 @@ import SearchIcon from "@mui/icons-material/Search"
 import Sidebar from './Sidebar';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
+import { useDispatch, useSelector } from 'react-redux';
+import { getuserCartProducts } from '../../features/cart/cartSlice';
 const Headerr = () => {
     const { t } = useTranslation();
     const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -17,6 +19,14 @@ const Headerr = () => {
             padding: "0 4px",
         },
     }));
+
+    const dispatch = useDispatch();
+    const {count} = useSelector((state) => state.cart);
+    console.log(count,"count")
+  
+    useEffect(() => {
+      dispatch(getuserCartProducts());
+    }, [dispatch]);
     return (
 
         <>
@@ -40,7 +50,7 @@ const Headerr = () => {
                     <LanguageSelector className="hidden" />
                 </div>
                 <div className=''>
-                    <StyledBadge badgeContent={4} color="primary" >
+                    <StyledBadge badgeContent={count} color="primary" >
                         <ShoppingCartIcon  style={{ color: 'blue' }}   />
                     </StyledBadge>
                 </div>

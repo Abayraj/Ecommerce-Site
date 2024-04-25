@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { getuserCartProducts } from '../features/cart/cartSlice';
 
 const Cart = () => {
-  const [quantity, setQuantity] = useState(1);
 
+
+  const dispatch = useDispatch();
+  const { loading, cart, error, count } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(getuserCartProducts());
+  }, [dispatch]);
+  console.log(loading, "productss");
+  console.log(cart,"productssss")
+  console.log(count,"countt")
+  const [quantity, setQuantity] = useState(1);
   const incrementQunatity = () => {
     setQuantity(quantity + 1);
   }
+
   const decrementQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
