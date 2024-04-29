@@ -4,6 +4,7 @@ import { singleproductDetails } from "../features/product/productSlice";
 import { Link, useParams } from "react-router-dom";
 import api from "./api/api_instance";
 
+
 const ProductDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -15,6 +16,13 @@ const ProductDetails = () => {
     (state) => state.products
   );
   console.log(products,"prr")
+  
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      setSelectedColor(products[0].colors[0]); // Set the first color option
+    }
+  }, [products]);
 
   const [selectedImage, setSelectedImage] = useState(1);
   const [selectedColor, setSelectedColor] = useState("");
@@ -23,6 +31,7 @@ const ProductDetails = () => {
   const handleColorChange = (event) => {
     setSelectedColor(event.target.value);
   };
+  console.log(selectedColor,"selected")
 
   const handleChangeImage = (index) => {
     setSelectedImage(index);

@@ -6,14 +6,16 @@ export const getuserCartProducts = createAsyncThunk(
   "cart/getuserCartProducts",
   async () => {
     try {
-      const response = await api.get('/usercart');
-      console.log(response.data,"cart datttaaa");
-      return response.data.userCartProducts;
+      const response = await api.get('/usercart')
+      console.log(response.data.userCartProducts)
+       return response.data.userCartProducts;
+      
     } catch (error) {
       throw error;
     }
   }
 );
+
 
 export const cartSlice = createSlice({
   name: "cart",

@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 //Checks if user is authenticated or not
 
 export const isAuthenticatedUser = catchAsyncErrors(async (req,res,next)=>{
-    const {token} = req.cookies
+    const {token} = req.cookies  
     console.log(token,"req.cookeies this is ")
 
  
