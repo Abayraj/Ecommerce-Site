@@ -17,6 +17,39 @@ export const getuserCartProducts = createAsyncThunk(
 );
 
 
+export const incrementCartItem = createAsyncThunk(
+  "cart/incrementCartItem",
+  async (cartItem) => {
+    try {
+      // Make API call to update quantity in database
+   console.log(cartItem)
+      await api.put(`/usercart/${cartItem.cartItemId}`,{quantity:cartItem.itemQuantity+1});
+   
+      return cartItem.cartItemId;
+     
+    } catch (error) {
+      console.log(error)
+      throw error;
+    }
+  }
+);
+
+export const decrementCartItem = createAsyncThunk(
+  "cart/decrementCartItem",
+  async (cartItem) => {
+    try {
+      // Make API call to update quantity in database
+      await api.put(`/usercart/${cartItem.cartItemId}`,{quantity:cartItem.itemQuantity-1});
+      return cartItem.cartItemId;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+
+
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
@@ -38,6 +71,23 @@ export const cartSlice = createSlice({
       .addCase(getuserCartProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+
+      .addCase(incrementCartItem.fulfilled, (state, action) => {
+        const  _id = action.payload;
+        console.log(action.payload)
+        console.log("Cart ID in incrementCartItem:", _id); // Log the _id
+        state.cart = state.cart.map(item => {
+          console.log("Item ID in incrementCartItem map:", item._id); // Log the item._id
+          return item._id === _id ? { ...item, quantity: item.quantity + 1 } : item;
+        });
+      })
+      
+      .addCase(decrementCartItem.fulfilled, (state, action) => {
+        const  _id = action.payload;
+        state.cart = state.cart.map(item =>
+          item._id === _id && item.quantity>1 ? { ...item, quantity: item.quantity - 1 } : item
+        );
       });
   }
 });

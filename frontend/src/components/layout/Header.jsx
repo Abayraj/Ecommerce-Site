@@ -43,7 +43,14 @@ export const Header = () => {
           </button>
         </div>
         <div>
-          <button className="hidden sm:inline-block border-2 rounded-full p-2 w-24 bg-slate-950 text-white">
+        <Link
+                          to={`/signup`} 
+                          className="hidden sm:inline-block border-2 rounded-full p-2 w-24 bg-slate-950 text-white"
+                        >
+
+                          SignUp
+                        </Link>
+          <button >
             {t("sign up")}
           </button>
         </div>

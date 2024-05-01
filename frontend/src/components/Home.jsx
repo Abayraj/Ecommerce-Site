@@ -6,8 +6,7 @@ import { DotLoader } from 'react-spinners'
 import { Link } from "react-router-dom";
 import api from "./api/api_instance";
 
-
-export const Home = () => {
+ const Home = () => {
   const dispatch = useDispatch();
   const { loading, products, error, count } = useSelector((state) => state.products);
 
@@ -183,3 +182,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

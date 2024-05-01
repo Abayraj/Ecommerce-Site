@@ -1,11 +1,13 @@
 
 import "./App.css";
 import { Footer } from "./components/layout/Footer.jsx";
-import { Home } from "./components/Home.jsx";
+import  Home  from "./components/Home.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Headerr from "./components/layout/Headerr.jsx";
 import  ProductDetails  from "../src/components/ProductDetails.jsx"
 import Cart from "./components/Cart.jsx"
+import { SignUp } from "./components/SignUp.jsx";
+
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
         <Routes> {/* Use <Routes> instead of <Router> */}
           <Route path="/" element={<Home/>} /> {/* Use 'element' prop instead of 'component' */}
           <Route path="/product/:id" element={<ProductDetails/>}/>
+
           <Route path="/cart" element={<Cart/>} />
+          <Route path="/signup" element={<SignUp/>}/>
         </Routes>
         <Footer />
     </Router>

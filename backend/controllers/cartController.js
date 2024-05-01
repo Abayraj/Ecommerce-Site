@@ -52,3 +52,23 @@ export const getUserCartProducts = catchAsyncErrors(async(req,res,next)=>{
 
 });
 
+export const cartItemsQuantityUpdate = catchAsyncErrors(async(req,res,next)=>{
+   const {cartId} =  req.params;
+   const {quantity} = req.body;
+   console.log(quantity,"quantityyy")
+   console.log(cartId,"cartId")
+   const updatedCartItem = await Cart.findOneAndUpdate(
+    { _id: cartId },
+    { $set: { quantity: quantity } },
+    { new: true } // This option returns the modified document
+  );
+   if(!updatedCartItem) {
+    return res.status(404).json({message:'cart item not found for update'})
+   }
+   res.status(200).json({
+    success:true,
+  
+
+})
+})
+
