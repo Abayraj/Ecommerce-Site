@@ -4,9 +4,10 @@ import { Footer } from "./components/layout/Footer.jsx";
 import  Home  from "./components/Home.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Headerr from "./components/layout/Headerr.jsx";
-import  ProductDetails  from "../src/components/ProductDetails.jsx"
 import Cart from "./components/Cart.jsx"
 import { SignUp } from "./components/SignUp.jsx";
+import Login from "./components/Login.jsx";
+import ProductDetails from "./components/productDetails.jsx";
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
 
           <Route path="/cart" element={<Cart/>} />
           <Route path="/signup" element={<SignUp/>}/>
+          <Route path="/login" element ={<Login/>}/>
+    
+
         </Routes>
         <Footer />
     </Router>

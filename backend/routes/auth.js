@@ -16,7 +16,7 @@ import {
 } from "../controllers/userController.js";
  import {isAuthenticatedUser,authorizeRoles} from "../middlewares/auth.js"
 
-router.post("/register", registerUser);
+router.post("/signup", registerUser);
 router.post("/login", loginUsers);
 router.get("/logout", logOutUser);
 router.post("/password/forgot", forgotPassword);

@@ -14,7 +14,7 @@ const Headerr = () => {
     const StyledBadge = styled(Badge)(({ theme }) => ({
         color: "#ffff",
         "& .MuiBadge-badge": {
-            right: -3,
+            right: -5,
             top: 8,
             border: `2px solid ${theme.palette.background.paper}`,
             padding: "0 4px",
@@ -25,9 +25,7 @@ const Headerr = () => {
     const {count} = useSelector((state) => state.cart);
     console.log(count,"count")
   
-    useEffect(() => {
-      dispatch(getuserCartProducts());
-    }, [dispatch]);
+   
     return (
 
         <>

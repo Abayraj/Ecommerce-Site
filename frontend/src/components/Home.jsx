@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useMemo } from "react";
+import React, { useEffect, useState} from "react";
 import MetaData from "./layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
 import { getallProducts } from "../features/product/productSlice";
@@ -23,26 +23,12 @@ import api from "./api/api_instance";
   console.log(products)
 
 
-  const loginFunction = async () => {
-    try {
-      const data = await api.post("/login", {
-        name: "hemant34",
-        email: "abayunni5@gmail.com",
-        password: "abayraj",
-      });
-      // Handle login success if needed
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // Memoize the login function
-  const login = useMemo(() => loginFunction, []);
+ 
 
   // Call the login function when needed
-  useEffect(() => {
-    login(); // Call the memoized login function
-  }, [login]); // Re-run the effect if the login function changes
+  // useEffect(() => {
+  //   login(); // Call the memoized login function
+  // }, [login]); // Re-run the effect if the login function changes
 
 
   const sortProducts = (option) => {

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { decrementCartItem, getuserCartProducts, incrementCartItem } from '../features/cart/cartSlice';
 import { DotLoader } from 'react-spinners';
 import Popup from '../components/Popup/Popup'
-import api from './api/api_instance';
+
 
 
 

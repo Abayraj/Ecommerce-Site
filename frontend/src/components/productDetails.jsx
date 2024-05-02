@@ -53,15 +53,12 @@ const ProductDetails = () => {
     }
   
     const product = products[0]; // Assuming there's only one product in the array
-    console.log(product.description,'desss')
+
     const data = {
       color: selectedColor,
       quantity: quantity,
       productid: id,
-      // Productname: product.name,
-      // image: product.image,
-      // description: product.description,
-      // price: product.price
+
     };
   
     api.post('/cart', data)
