@@ -62,8 +62,8 @@ userSchema.methods.comparePassword = async function (enteredpassword) {
 
 //Return JWT token
 userSchema.methods.getJwtToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_TIME,
+  return jwt.sign({ id: this._id },process.env.JWT_SECRET,{
+    expiresIn:process.env.JWT_EXPIRES_TIME,
   });
 };
 
@@ -85,6 +85,6 @@ userSchema.methods.getResetPasswordToken = function () {
 }
 
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("user",userSchema);
 
 export default User;

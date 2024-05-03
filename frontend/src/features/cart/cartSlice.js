@@ -51,7 +51,7 @@ export const decrementCartItem = createAsyncThunk(
 
 
 export const cartSlice = createSlice({
-  name: "cart",
+  name: "car",
   initialState: {
     cart:[],
     loading: false,

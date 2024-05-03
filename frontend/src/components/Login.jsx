@@ -1,9 +1,15 @@
 import { t } from 'i18next'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import api from './api/api_instance';
 
+
 const Login = () => {
+    const navigate = useNavigate();
+
+
+
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -22,8 +28,8 @@ const Login = () => {
 
         try {
             const response = await api.post("/login", formData);
-            // Handle login success if needed
-            console.log(response)
+            // Redirect to the home page ("/")
+            navigate("/");
         } catch (error) {
             console.log(error)
             //  throw(error)
@@ -43,19 +49,19 @@ const Login = () => {
                     <div className="my-auto mx-auto flex flex-col justify-center px-6 pt-8 md:justify-start lg:w-[28rem]">
                         <p className="text-center text-3xl font-bold md:text-left md:leading-tight">Create your free account</p>
                         <p className="mt-6 text-center font-medium md:text-left">
-                        "Welcome back! Let's continue your journey."
-                        
+                            "Welcome back! Let's continue your journey."
+
                         </p>
-                        
+
                         <p className='font-medium '>Don't have an account? Sign up now to get started!
-                        <Link
-                          to={"/signup"} 
-                          className="text-blue-600 ml-2"
-                        >
-                            {t("signup")}
-                        </Link>
-                        </p>           
-                       
+                            <Link
+                                to={"/signup"}
+                                className="text-blue-600 ml-2"
+                            >
+                                {t("signup")}
+                            </Link>
+                        </p>
+
                         <button className="-2 mt-8 flex items-center justify-center rounded-md border px-4 py-1 outline-none ring-gray-400 ring-offset-2 transition hover:border-transparent hover:bg-black hover:text-white focus:ring-2">
                             <img className="mr-2 h-5" src="public\images\Googlelogo.svg" alt /> Continue with Google</button>
                         <div className="relative mt-8 flex h-px place-items-center bg-gray-200">
@@ -69,7 +75,7 @@ const Login = () => {
                             </div>
                             <div className="mb-4 flex flex-col pt-4">
                                 <div className="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-                                    <input type="password" id="password" name="password" onChange={handleChange}  autocomplete="current-password" className="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="Password (minimum 8 characters)" />
+                                    <input type="password" id="password" name="password" onChange={handleChange} autocomplete="current-password" className="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="Password (minimum 8 characters)" />
                                 </div>
                             </div>
                             <div className="block">

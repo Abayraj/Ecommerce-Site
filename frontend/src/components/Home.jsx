@@ -2,16 +2,22 @@ import React, { useEffect, useState} from "react";
 import MetaData from "./layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
 import { getallProducts } from "../features/product/productSlice";
+import {currentUser } from "../features/user/userSlice"
 import { DotLoader } from 'react-spinners'
 import { Link } from "react-router-dom";
-import api from "./api/api_instance";
+
 
  const Home = () => {
   const dispatch = useDispatch();
   const { loading, products, error, count } = useSelector((state) => state.products);
 
+  // console.log(val)
+ 
+
   useEffect(() => {
+
     dispatch(getallProducts());
+
   }, [dispatch]);
   console.log(loading, "productss");
   console.log(products,"productssss")

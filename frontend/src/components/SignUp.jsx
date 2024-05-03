@@ -1,16 +1,32 @@
-import axios from 'axios';
+
 import { t } from 'i18next';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from './api/api_instance';
+import { currentUser } from '../features/user/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const SignUp = () => {
+    const dispatch = useDispatch();
+    
+    const { user } = useSelector(
+        (state) => state.user
+      );
+      console.log(user)
+
+    useEffect(() => {
+
+        dispatch(currentUser());
+    
+      }, [dispatch]);
+
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: ''
     });
-    console.log(formData)
+  
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
