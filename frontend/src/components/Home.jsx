@@ -1,18 +1,19 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import MetaData from "./layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
 import { getallProducts } from "../features/product/productSlice";
-import {currentUser } from "../features/user/userSlice"
 import { DotLoader } from 'react-spinners'
 import { Link } from "react-router-dom";
+import { t } from "i18next";
+import SearchIcon from "@mui/icons-material/Search"
 
 
- const Home = () => {
+const Home = () => {
   const dispatch = useDispatch();
   const { loading, products, error, count } = useSelector((state) => state.products);
 
   // console.log(val)
- 
+
 
   useEffect(() => {
 
@@ -20,16 +21,16 @@ import { Link } from "react-router-dom";
 
   }, [dispatch]);
   console.log(loading, "productss");
-  console.log(products,"productssss")
+  console.log(products, "productssss")
 
   const [sortedProducts, setSortedProducts] = useState([]); // State to hold sorted products
-  useEffect(()=>{
+  useEffect(() => {
     setSortedProducts(products);
-  },[products])
+  }, [products])
   console.log(products)
 
 
- 
+
 
   // Call the login function when needed
   // useEffect(() => {
@@ -44,14 +45,14 @@ import { Link } from "react-router-dom";
     } else if (option === "highToLow") {
       sortedProducts.sort((a, b) => b.price - a.price);
     }
-   
-    
+
+
     setSortedProducts(sortedProducts);
   };
 
   const handleSortChange = (e) => {
     const selectedOption = e.target.value;
-    if(!selectedOption){
+    if (!selectedOption) {
       setSortedProducts(products)
     }
     sortProducts(selectedOption);

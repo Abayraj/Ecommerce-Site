@@ -22,16 +22,27 @@ const Headerr = () => {
     }));
 
     const dispatch = useDispatch();
-    const {count} = useSelector((state) => state.cart);
-    console.log(count,"count")
-  
-   
+    const { count } = useSelector((state) => state.cart);
+    useEffect(() => {
+        dispatch(getuserCartProducts())
+    }, [dispatch])
+
+
+    console.log(count, "count")
+
+
     return (
 
         <>
             <header className='flex p-4  items-center justify-around bg-white  sticky top-0 z-10 '>
                 <div className='mt-1'>
-                    <h1 className='text-2xl font-medium'>SimplyShop</h1>
+                    <Link
+                        to={"/"}
+
+                    >
+                        <h1 className='text-2xl font-medium'>SimplyShop</h1>
+
+                    </Link>
                 </div>
                 <div className="relative hidden sm:block">
                     <input
@@ -40,22 +51,26 @@ const Headerr = () => {
                         style={{ textIndent: "45px" }}
                         placeholder={t("search...")}
                     />
-                    <SearchIcon className="absolute top-1 sm:top-3 left-6"/>
+                    <SearchIcon className="absolute top-1 sm:top-3 left-6" />
                 </div>
                 <div>
-                <Link
-                          to={"/signup"} 
-                          className="hidden sm:inline-block border-2 rounded-full p-2 text-center w-24 bg-slate-950 text-white"
-                        >
-                            {t("signUp")}
-                        </Link>
+                    <div className="auth flex items-center">
+                        <Link to="/login" className="bg-transparent text-black p-2 rounded border border-gray-300 mr-4 hover:bg-gray-100 hover:text-gray-700">Login</Link>
+                        <Link to="/signup" className="bg-gray-900 text-gray-200 py-2 px-3 rounded hover:bg-gray-800 hover:text-gray-100">Sign up for free</Link>
+                    </div>
+                    {/* <Link
+                        to={"/signup"}
+                        className="hidden sm:inline-block border-2 rounded-full p-2 text-center w-24 bg-slate-950 text-white"
+                    >
+                        {t("signUp")}
+                    </Link> */}
                 </div>
                 <div className="hidden  ">
                     <LanguageSelector className="hidden" />
                 </div>
                 <div className=''>
                     <StyledBadge badgeContent={count} color="primary" >
-                        <ShoppingCartIcon  style={{ color: 'blue' }}   />
+                        <ShoppingCartIcon style={{ color: 'blue' }} />
                     </StyledBadge>
                 </div>
                 <div className='lg:hidden '>

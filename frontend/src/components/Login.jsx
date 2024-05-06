@@ -27,9 +27,10 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await api.post("/login", formData);
+            await api.post("/login", formData);
             // Redirect to the home page ("/")
             navigate("/");
+            window.location.reload();
         } catch (error) {
             console.log(error)
             //  throw(error)

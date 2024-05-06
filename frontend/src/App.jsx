@@ -5,7 +5,7 @@ import  Home  from "./components/Home.jsx";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Headerr from "./components/layout/Headerr.jsx";
 import Cart from "./components/Cart.jsx"
-import { SignUp } from "./components/SignUp.jsx";
+import  SignUp  from "./components/SignUp.jsx";
 import Login from "./components/Login.jsx";
 import ProductDetails from "./components/productDetails.jsx";
 import { useDispatch, useSelector } from "react-redux";
