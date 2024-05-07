@@ -30,8 +30,18 @@ const AuthController = () => {
   };
 
   const handlelogOut = async (event) =>{
+    try {
+    await api.get("/logout");
+    // Redirect to the home page ("/")
+    navigate("/");
+    window.location.reload();
+  } catch (error) {
+    console.log(error);
+    // Handle error
+  }
 
   }
+
 
   return {
     user,

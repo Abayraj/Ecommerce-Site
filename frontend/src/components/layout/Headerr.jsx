@@ -9,6 +9,7 @@ import LanguageSelector from './LanguageSelector';
 import { useDispatch, useSelector } from 'react-redux';
 import { getuserCartProducts } from '../../features/cart/cartSlice';
 import { Link } from 'react-router-dom';
+import { currentUser } from '../../features/user/userSlice';
 const Headerr = () => {
     const { t } = useTranslation();
     const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -23,10 +24,19 @@ const Headerr = () => {
 
     const dispatch = useDispatch();
     const { count } = useSelector((state) => state.cart);
+    const {user} = useSelector((state)=>state.user)
+    console.log(user)
     useEffect(() => {
-        dispatch(getuserCartProducts())
-    }, [dispatch])
-
+        if (!user) {
+          dispatch(currentUser());
+        }
+      }, [dispatch]);
+    
+      useEffect(() => {
+        if (user && Object.keys(user).length !== 0) {
+          dispatch(getuserCartProducts());
+        }
+      }, [dispatch,user]);
 
     console.log(count, "count")
 

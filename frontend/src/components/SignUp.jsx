@@ -8,20 +8,20 @@ import * as Yup from 'yup';
 
 const SignUp = () => {
     const { handleSubmit,user,handlelogOut } = AuthController();
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: ''
-    });
-    console.log(formData)
+    // const [formData, setFormData] = useState({
+    //     name: '',
+    //     email: '',
+    //     password: ''
+    // });
+    // console.log(formData)
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
+    // const handleChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         [name]: value
+    //     }));
+    // };
 
     return (
         <>

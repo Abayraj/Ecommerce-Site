@@ -14,7 +14,9 @@ export const currentUser = createAsyncThunk("getcurrentuserDetails",async()=>{
     }
   })
 
-  // console.log(initialState.user)
+  export const logoutUser = () => {
+    return { type: 'user/logout' }; // Action to logout user
+  };
 
   export const userSlice = createSlice({
     name: "user", 
@@ -39,6 +41,9 @@ export const currentUser = createAsyncThunk("getcurrentuserDetails",async()=>{
           state.loading = false;
           state.error = action.payload;
         })
+        .addCase('user/logout', (state, action) => {
+          state.user = []; // Set user to empty array on logout
+        });
     }
   
 });
