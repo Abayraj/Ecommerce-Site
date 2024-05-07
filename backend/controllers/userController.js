@@ -4,31 +4,38 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import { sendToken } from "../utils/jwtToken.js";
 import sendEmail from "../utils/sentEmail.js";
 import crypto from "crypto";
-//Registeror signup a user => /api/v1/register
+//Registeror signup a user => /api/v1/signup
 
 export const registerUser = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
-  console.log(name ,email,password)
-  const user = await User.create({
-    name,
-    email,
-    password,
-    avatar: {
-      public_id: '"asdfasf"',
-      url: '"dfsadf434"',
-    },
-  });
- 
-
-  sendToken(user, 200, res);
+  
+  try {
+    const user = await User.create({
+      name,
+      email,
+      password,
+      avatar: {
+        public_id: '"asdfasf"',
+        url: '"dfsadf434"',
+      },
+    });
+  
+    sendToken(user, 200, res);
+  } catch (error) {
+    // console.log(error)
+    if (error.code === 11000 && error.keyPattern && error.keyPattern.email) {
+       next(new ErrorHandler('Email already exists. Please log in instead.', 400));
+    } else {
+       next(new ErrorHandler('An error occurred while registering the user check given data.', 500));
+    }
+  }
 });
 
 //Login User => /api/v1/login
 
 export const loginUsers = catchAsyncErrors(async (req, res, next) => {
+  
   const { email, password } = req.body;
-
-
   //checks if email and password is entered by user
   if (!email || !password) {
     return next(new ErrorHandler("please enter email and password", 400));

@@ -62,9 +62,7 @@ const ProductDetails = () => {
     };
   
     api.post('/cart', data)
-      .then(response => {
-        console.log('Cart item added', response.data);
-      })
+    window.location.reload()
       .catch(error => {
         console.error('Error adding item to cart:', error);
       });
